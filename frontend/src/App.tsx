@@ -1,11 +1,14 @@
+import { Outlet } from "react-router-dom"
 
 function App() {
 
 
   return (
     <>
-      <div className="pt-2 p-4">
-
+      <div className="flex h-full flex-col">
+        <Header />
+          <Outlet />
+        <Footer />
       </div>
     </>
   )
