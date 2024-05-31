@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const userRouter = require('./src/routes/user.route');
 const authRouter = require('./src/routes/auth.route');
 const cors = require('cors');
+const productsRouter = require('./src/routes/products.route');
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.get('/api', (req, res) => {
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/products', productsRouter);
+
 
 app.listen(port, () => {
   console.info(`[TechNexus-Backend]: Server Running at http://localhost:${port}`);

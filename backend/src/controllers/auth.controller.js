@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 12345;
-const PASSWORD_HASH_SALT = process.env.PASSWORD_HASH_SALT || 12345;
 
 async function signin(req, res, next) {
 
