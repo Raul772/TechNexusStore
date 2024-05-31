@@ -1,8 +1,6 @@
 const prisma = require("../lib/prisma");
 
 async function getProduct(req, res, next) {
-  console.log(req.params.slug);
-
   let response = await prisma.product.findFirst({
     where: {
       slug: req.params.slug,
@@ -72,11 +70,29 @@ async function getProducts(req, res, next) {
   res.json(response);
 }
 
+async function getRelated(req, res, next) {
+  let response = await prisma.product.findMany({
+    where: {
+      categoryId: req.params.categoryId,
+      slug: {
+        not: req.params.slug
+      }
+    },
+  });
+
+  if (!response) {
+    return res.status(400).json({ message: "Error while fetching products." });
+  }
+
+  res.json(response);
+}
+
 
 module.exports = {
   getProduct,
   getProducts,
   getDeals,
   getCategories,
-  getProductByCategory
+  getProductByCategory,
+  getRelated
 };

@@ -5,12 +5,15 @@ import './index.css';
 import { router } from './routes';
 import { AuthProvider } from './contexts/AuthContext/AuthContext';
 import { ThemeProvider } from './providers/ThemeProvider/theme-provider';
+import CartProvider from './providers/CartProvider/cart';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>,

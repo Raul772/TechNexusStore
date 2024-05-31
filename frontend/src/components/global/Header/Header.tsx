@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
+import Cart from "../Cart/cart";
 
 export default function Header() {
 
@@ -128,9 +129,9 @@ export default function Header() {
             <ShoppingCartIcon />
           </Button>
         </SheetTrigger>
-        {/* <SheetContent>
+        <SheetContent>
           <Cart />
-        </SheetContent> */}
+        </SheetContent>
       </Sheet>
 
 

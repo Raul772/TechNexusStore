@@ -56,7 +56,7 @@ export default function Home(){
           <PromoBanner
             src="/banner-home-01.png"
             alt="Até 55% de desconto esse mês!"
-            className="mx-auto max-w-2xl"
+            className="mx-auto xl:max-w-2xl"
           />
         </div>
   
@@ -73,7 +73,7 @@ export default function Home(){
           <PromoBanner
             src="/banner-home-02.png"
             alt="Até 55% de desconto em mouses!"
-            className="mx-auto max-w-2xl"
+            className="mx-auto lg:max-w-2xl"
           />
         </div>
   
@@ -86,7 +86,7 @@ export default function Home(){
           <PromoBanner
             src="/banner-home-03.png"
             alt="Até 55% de desconto em mouses!"
-            className="mx-auto max-w-2xl"
+            className="mx-auto lg:max-w-2xl"
           />
         </div>
   
