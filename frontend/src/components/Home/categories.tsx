@@ -5,17 +5,19 @@ import CategoryItem from "./category-item";
 
 const Categories = () => {
 
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await axios.get('http://localhost:3000/api/products/categories');
+      const response = await axios.get(`${API_BASE_URL}api/products/categories`);
 
       if(response)
         setCategories(response.data as ICategory[]);
     }
     fetchCategories();
-  })
+  },[])
 
 
   return (

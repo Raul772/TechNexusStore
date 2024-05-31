@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className="flex min-h-screen dark:bg-black flex-col justify-between">
+      <div className="flex min-h-screen justify-between dark:bg-black flex-col">
         <Header />
         <Outlet />
         <Footer />
