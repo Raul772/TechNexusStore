@@ -52,10 +52,11 @@ export default function Home(){
 
     return (
       <div className="flex flex-col gap-8 py-8">
-        <div className="px-5">
+        <div className="px-5 w-full">
           <PromoBanner
             src="/banner-home-01.png"
             alt="Até 55% de desconto esse mês!"
+            className="mx-auto max-w-2xl"
           />
         </div>
   
@@ -68,10 +69,11 @@ export default function Home(){
           <ProductList products={deals} />
         </div>
   
-        <div className="px-5">
+        <div className="px-5 w-full">
           <PromoBanner
             src="/banner-home-02.png"
             alt="Até 55% de desconto em mouses!"
+            className="mx-auto max-w-2xl"
           />
         </div>
   
@@ -80,10 +82,11 @@ export default function Home(){
           <ProductList products={keyboards} />
         </div>
   
-        <div className="px-5">
+        <div className="px-5 w-full">
           <PromoBanner
             src="/banner-home-03.png"
             alt="Até 55% de desconto em mouses!"
+            className="mx-auto max-w-2xl"
           />
         </div>
   

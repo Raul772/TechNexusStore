@@ -1,5 +1,5 @@
 
-import { Loader } from "lucide-react";
+import { CircleX, Loader } from "lucide-react";
 import { Img } from "react-image";
 
 interface ImageProps {
@@ -8,11 +8,12 @@ interface ImageProps {
   sizes?: string;
   src: string;
   alt: string;
+  className?: string;
 }
 
-const PromoBanner = (props: ImageProps, className?: string) => {
+const PromoBanner = (props: ImageProps) => {
   return (
-    <Img {...props} className={className} loader={<Loader size={50} />} unloader={<span>Error loading image</span>} />
+    <Img {...props} loader={<Loader size={50} />} unloader={<span><CircleX size={15} />Error loading image</span>} />
   );
 };
 
