@@ -2,36 +2,20 @@ import { Separator } from "@radix-ui/react-separator";
 import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShieldAlert, ShoppingCartIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ModeToggle } from "../ModeToggle/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { ModeToggle } from "../ModeToggle/mode-toggle";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 
 export default function Header() {
 
-  const [status, setStatus] = useState("unauthenticated");
+  const { user, status, signout } = useAuth();
 
-
-  const handleLoginClick = async () => {
-
-
-    // TODO
-
-
+  const handleLogoutClick = () => {
+    signout();
   };
-
-  const handleLogoutClick = async () => {
-
-
-    // TODO
-
-
-  };
-
-
-
-
 
 
   return (
@@ -48,17 +32,17 @@ export default function Header() {
             Menu
           </SheetHeader>
 
-          {status === "authenticated" && data?.user && (
+          {status === "authenticated" && user && (
             <div className="flex flex-col">
               <div className="flex items-center justify-center gap-2 py-4">
                 <Avatar>
-                  {data.user.image && <AvatarImage src={data.user.image} />}
+                  {user.image && <AvatarImage src={user.image} />}
                   <AvatarFallback>
-                    {data.user.name?.[0].toUpperCase()}
+                    {user.name?.[0].toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <p className="font-medium">{data.user.name}</p>
+                  <p className="font-medium">{user.name}</p>
                   <p className="text-sm opacity-75">Boas Compras!</p>
                 </div>
               </div>
@@ -68,13 +52,16 @@ export default function Header() {
 
           <div className="mt-4 flex flex-col gap-2">
             {status === "unauthenticated" && (
-              <Button
-                onClick={handleLoginClick}
-                variant="outline"
-                className="w-full justify-start gap-2"
-              >
-                <LogInIcon size={16} /> Fazer Login
-              </Button>
+              <SheetClose asChild>
+                <Link to={"/signin"}>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    <LogInIcon size={16} /> Fazer Login
+                  </Button>
+                </Link>
+              </SheetClose>
             )}
 
             {status === "authenticated" && (

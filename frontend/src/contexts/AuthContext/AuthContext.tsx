@@ -1,8 +1,10 @@
+"use server"
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { AuthContextType } from "./interfaces/AuthContextType";
 import { ICredentials } from "./interfaces/ICredentials";
 import { IUser } from "./interfaces/IUser";
+import { STATUS } from "./interfaces/IStatus";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -11,7 +13,7 @@ export const useAuth = () => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error("useAuth deve ser usado dentro de um AuthProvider");
+    throw new Error("useAuth must be used inside an AuthProvider");
   }
 
   return context;
@@ -20,28 +22,34 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const [user, setUser] = useState<IUser | null>(null);
+  const [status, setStatus] = useState<keyof typeof STATUS| null>("unauthenticated");
 
   const signin = async (credentials: ICredentials) => {
-    try {
-      const response = await axios.post('/api/login', credentials)
-      const { token } = response.data;
 
-      localStorage.setItem("jwt", token);
-      setUser(token);
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
+
+      const { jwtToken, user } = response.data;
+      localStorage.setItem("jwt", jwtToken);
+      setUser(user);
+      setStatus("authenticated");
     }
     catch (error) {
       // TODO
     }
+
+    return true;
   }
 
   const signout = () => {
     localStorage.removeItem("jwt");
     setUser(null);
+    setStatus("unauthenticated");
   }
 
 
   return (
-    <AuthContext.Provider value={{ user, signin, signout }}>
+    <AuthContext.Provider value={{ status, user, signin, signout }}>
       {children}
     </AuthContext.Provider>
   );
