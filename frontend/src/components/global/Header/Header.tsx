@@ -1,13 +1,16 @@
 import { Separator } from "@radix-ui/react-separator";
 import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShieldAlert, ShoppingCartIcon } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
+import { ModeToggle } from "../ModeToggle/mode-toggle";
 
 export default function Header() {
 
+  const [status, setStatus] = useState("unauthenticated");
 
 
   const handleLoginClick = async () => {
@@ -19,9 +22,9 @@ export default function Header() {
   };
 
   const handleLogoutClick = async () => {
-    
 
-      // TODO
+
+    // TODO
 
 
   };
@@ -32,7 +35,7 @@ export default function Header() {
 
 
   return (
-    <Card className="flex items-center justify-between p-[1.875rem]">
+    <Card className="flex items-center  justify-between p-[1.875rem]">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
@@ -41,7 +44,7 @@ export default function Header() {
         </SheetTrigger>
 
         <SheetContent side="left">
-          <SheetHeader className="text-left text-lg font-semibold">
+          <SheetHeader className="text-left dark:text-white text-lg font-semibold">
             Menu
           </SheetHeader>
 
@@ -119,6 +122,8 @@ export default function Header() {
               </Link>
             </SheetClose>
 
+            <ModeToggle />
+
           </div>
         </SheetContent>
       </Sheet>
@@ -129,15 +134,19 @@ export default function Header() {
         </h1>
       </Link>
 
+
+
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
             <ShoppingCartIcon />
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        {/* <SheetContent>
           <Cart />
-        </SheetContent>
+        </SheetContent> */}
       </Sheet>
+
+
     </Card>)
 };

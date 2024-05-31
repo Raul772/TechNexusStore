@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+import Header from "./components/global/Header/Header"
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
       <div className="flex h-full flex-col">
         <Header />
           <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   )
