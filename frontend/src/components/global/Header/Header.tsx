@@ -1,13 +1,12 @@
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { Separator } from "@radix-ui/react-separator";
 import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShieldAlert, ShoppingCartIcon } from "lucide-react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "../ModeToggle/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
 
 export default function Header() {
 

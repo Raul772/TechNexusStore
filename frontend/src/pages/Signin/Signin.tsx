@@ -6,7 +6,7 @@ export default function Signin() {
 
   const { signin } = useAuth();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,8 +15,6 @@ export default function Signin() {
     signin({ email, password });
     navigate("/");
   }
-
-
 
   return (
     <div className="flex h-full w-full items-center justify-center">
