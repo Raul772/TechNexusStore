@@ -35,7 +35,7 @@ export default function Header() {
 
 
   return (
-    <Card className="flex items-center  justify-between p-[1.875rem]">
+    <Card className="flex items-center border-none justify-between p-[1.875rem]">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
@@ -44,7 +44,7 @@ export default function Header() {
         </SheetTrigger>
 
         <SheetContent side="left">
-          <SheetHeader className="text-left dark:text-white text-lg font-semibold">
+          <SheetHeader className="text-left text-lg font-semibold">
             Menu
           </SheetHeader>
 

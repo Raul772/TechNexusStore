@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="flex h-full flex-col">
+      <div className="flex h-screen dark:bg-black flex-col">
         <Header />
           <Outlet />
         {/* <Footer /> */}

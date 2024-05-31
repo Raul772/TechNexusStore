@@ -8,8 +8,9 @@ export const router = createBrowserRouter(createRoutesFromElements(
   <>
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
+      <Route path="/signin" element={<Signin />} />
     </Route>
-    <Route path="/signin" element={<Signin />} />
+    
   </>
 
 ));
