@@ -1,0 +1,19 @@
+FROM node:20-alpine 
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+COPY . .
+copy .env .env
+
+RUN if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
+  else echo "Lockfile not found." && exit 1; \
+  npm run build; \
+  npm i -D ts-node typescript @types/node;\
+  fi
+
+
+CMD  npm run dev 
