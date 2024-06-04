@@ -7,7 +7,7 @@ import { IUser } from "./interfaces/IUser";
 import { STATUS } from "./interfaces/IStatus";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const useAuth = () => {
 
   const context = useContext(AuthContext);
@@ -27,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signin = async (credentials: ICredentials) => {
 
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
+      const response = await axios.post(API_BASE_URL+'api/auth/signin', credentials);
 
       const { jwtToken, user } = response.data;
       localStorage.setItem("jwt", jwtToken);
