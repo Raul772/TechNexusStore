@@ -1,16 +1,31 @@
+import axios from "axios";
 import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
 
 
-export default function Signin() {
+export default function Signup() {
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const [loading] = useState(false);
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    location.href = `http://localhost:80/redirect/signin/${email}/${password}`;
+
+    const postUser = async () => {
+      const response = await axios.post(`${API_BASE_URL}api/user/`, {
+        name,
+        email,
+        password
+      });
+
+      if (response) {
+        location.href = "http://localhost:80/"
+      }
+    }
+    postUser();
   }
 
   return (
@@ -19,11 +34,11 @@ export default function Signin() {
         {
           loading ? <p>Por favor, aguarde...</p> : <>
             <h2 className="pb-5 text-lg font-bold">
-              Entre com seu e-mail e senha!
+              Cadastre-se!
             </h2>
 
             <div className="hidden">
-              <p>Sign in failed. Check the details you provided are correct.</p>
+              <p>Sign up failed</p>
             </div>
             <hr />
             <form
@@ -32,8 +47,24 @@ export default function Signin() {
             >
               <div className="mb-2">
                 <label
+                  htmlFor="input-name-for-credentials-provider"
+                  className="mb-2 block text-sm font-bold dark:text-slate-200"
+                >
+                  Nome
+                </label>
+                <input
+                  name="name"
+                  id="input-name-for-credentials-provider"
+                  type="text"
+                  placeholder="Fulano de tal"
+                  className="w-full rounded px-1 py-2 text-black"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="my-3">
+                <label
                   htmlFor="input-email-for-credentials-provider"
-                  className="mb-2 block text-sm dark:text-slate-200"
+                  className="mb-2 block text-sm font-bold dark:text-slate-200"
                 >
                   E-mail
                 </label>
@@ -49,7 +80,7 @@ export default function Signin() {
               <div className="my-3">
                 <label
                   htmlFor="input-password-for-credentials-provider"
-                  className="mb-2 block text-sm dark:text-slate-200"
+                  className="mb-2 block text-sm font-bold dark:text-slate-200"
                 >
                   Senha
                 </label>
@@ -66,13 +97,10 @@ export default function Signin() {
                   className="rounded border-2 border-slate-700 px-8 py-4 font-bold dark:text-white hover:bg-slate-700"
                   type="submit"
                 >
-                  Login
+                  Cadastrar
                 </button>
               </div>
             </form>
-            <Link className="my-2 underline" to={"/signup"}>
-              Cadastre-se!
-            </Link>
           </>}
       </div>
     </div>

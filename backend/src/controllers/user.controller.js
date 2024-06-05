@@ -1,4 +1,6 @@
 const prisma = require("../lib/prisma");
+const uuid = require("uuid");
+const bcrypt = require("bcryptjs");
 
 async function get(req, res, next) {
   try {
@@ -22,12 +24,20 @@ async function get(req, res, next) {
 }
 
 async function create(req, res, next) {
-  try {
-    res.json(await programmingLanguages.create(req.body));
-  } catch (err) {
-    console.error(`Error while creating new user:`, err.message);
-    next(err);
+  
+  const { name, email, image, password } = req.body;
+
+  const newUser = {
+    id: uuid.v4(),
+    name,
+    email,
+    image: image || null,
+    password: await bcrypt.hash(password, 10)
   }
+
+  await prisma.user.create({data: newUser });
+
+  res.json(newUser);
 }
 
 async function update(req, res, next) {
