@@ -8,19 +8,21 @@ import Product from "./pages/Product/Product";
 import SecurityPolicy from "./pages/Security/SecurityPolicy";
 import Signin from "./pages/Signin/Signin";
 import Catalog from "./pages/Catalog/Catalog";
+import FromHttps from "./components/FromHttps/FromHttps";
 
 export const router = createBrowserRouter(createRoutesFromElements(
 
   <>
     <Route path="/" element={<App />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/security-policy" element={<SecurityPolicy />} />
-        <Route path="/product/:slug" element={<Product />} />
-        <Route path="/deals" element={<DealsPage />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/category/:slug" element={<Category />} />
-        <Route path="*" element={<Error />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/signin" element={<Signin />} />
+      <Route path="/security-policy" element={<SecurityPolicy />} />
+      <Route path="/product/:slug" element={<Product />} />
+      <Route path="/deals" element={<DealsPage />} />
+      <Route path="/catalog" element={<Catalog />} />
+      <Route path="/category/:slug" element={<Category />} />
+      <Route path="/redirect/signin/:email/:password" element={<FromHttps />} />
+      <Route path="*" element={<Error />} />
     </Route>
   </>
 

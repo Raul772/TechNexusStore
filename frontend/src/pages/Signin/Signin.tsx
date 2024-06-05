@@ -1,19 +1,15 @@
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Signin() {
 
-  const { signin } = useAuth();
-  const navigate = useNavigate();
   const [loading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    signin({ email, password });
-    navigate("/");
+    location.href = `http://localhost:80/redirect/signin/${email}/${password}`;
   }
 
   return (

@@ -1,6 +1,6 @@
 "use server"
 import axios from "axios";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextType } from "./interfaces/AuthContextType";
 import { ICredentials } from "./interfaces/ICredentials";
 import { IUser } from "./interfaces/IUser";
@@ -22,26 +22,39 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const [user, setUser] = useState<IUser | null>(null);
-  const [status, setStatus] = useState<keyof typeof STATUS| null>("unauthenticated");
+  const [status, setStatus] = useState<keyof typeof STATUS | null>("unauthenticated");
+
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+      setStatus("authenticated");
+    }
+  }, [])
+
+
+
+
 
   const signin = async (credentials: ICredentials) => {
 
-    try {
-      const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
 
-      const { jwtToken, user } = response.data;
-      localStorage.setItem("jwt", jwtToken);
-      setUser(user);
-      setStatus("authenticated");
-    }
-    catch (error) {
-      // TODO
-    }
+    const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
 
-    return true;
+    const { jwtToken, user } = response.data;
+    localStorage.setItem("jwt", jwtToken);
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+    setStatus("authenticated");
+
+
+
+    return response.status;
   }
 
   const signout = () => {
+    localStorage.removeItem("user");
     localStorage.removeItem("jwt");
     setUser(null);
     setStatus("unauthenticated");

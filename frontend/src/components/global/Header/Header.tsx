@@ -1,7 +1,7 @@
 import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { Separator } from "@radix-ui/react-separator";
 import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShieldAlert, ShoppingCartIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ModeToggle } from "../ModeToggle/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -53,7 +53,7 @@ export default function Header() {
           <div className="mt-4 flex flex-col gap-2">
             {status === "unauthenticated" && (
               <SheetClose asChild>
-                <Link to={"/signin"}>
+                <Link to={"https://localhost:443/signin"}>
                   <Button
                     variant="outline"
                     className="w-full justify-start gap-2"
@@ -75,38 +75,38 @@ export default function Header() {
             )}
 
             <SheetClose asChild>
-              <Link to="/">
+              <NavLink to="/">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <HomeIcon size={16} /> Início
                 </Button>
-              </Link>
+              </NavLink>
             </SheetClose>
 
             <SheetClose asChild>
-              <Link to="/deals">
+              <NavLink to="/deals">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <PercentIcon size={16} /> Ofertas
                 </Button>
-              </Link>
+              </NavLink>
             </SheetClose>
 
             <SheetClose asChild>
-              <Link to="/catalog">
+              <NavLink to="/catalog">
                 <Button
                   variant="outline"
                   className="w-full justify-start gap-2"
                 >
                   <ListOrderedIcon size={16} /> Catálogo
                 </Button>
-              </Link>
+              </NavLink>
             </SheetClose>
 
             <SheetClose asChild>
-              <Link to="/security-policy">
+              <NavLink to="/security-policy">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <ShieldAlert size={16} /> Política de segurança
                 </Button>
-              </Link>
+              </NavLink>
             </SheetClose>
 
             <ModeToggle />
@@ -115,11 +115,11 @@ export default function Header() {
         </SheetContent>
       </Sheet>
 
-      <Link to="/">
+      <NavLink to="/">
         <h1 className="text-lg font-semibold">
           <span className="text-primary">Tech</span>Nexus
         </h1>
-      </Link>
+      </NavLink>
 
 
 

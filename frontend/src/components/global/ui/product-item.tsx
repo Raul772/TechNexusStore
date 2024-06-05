@@ -1,7 +1,7 @@
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { CircleX, Loader } from "lucide-react";
 import { Img } from "react-image";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import DiscountBadge from "./discount-badge";
 
 
@@ -11,11 +11,8 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
 
-  
-
-
   return (
-    <Link to={`/product/${product.slug}`}>
+    <Link reloadDocument to={`/product/${product.slug}`} >
       <div className="flex flex-col gap-4">
         
         <div className="relative flex h-[170px] min-w-[170px] items-center justify-center rounded-lg bg-accent">
