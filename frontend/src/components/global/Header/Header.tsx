@@ -75,38 +75,38 @@ export default function Header() {
             )}
 
             <SheetClose asChild>
-              <NavLink to="/">
+              <Link to="http://localhost:80/">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <HomeIcon size={16} /> Início
                 </Button>
-              </NavLink>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
-              <NavLink to="/deals">
+              <Link to="http://localhost:80/deals">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <PercentIcon size={16} /> Ofertas
                 </Button>
-              </NavLink>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
-              <NavLink to="/catalog">
+              <Link to="http://localhost:80/catalog">
                 <Button
                   variant="outline"
                   className="w-full justify-start gap-2"
                 >
                   <ListOrderedIcon size={16} /> Catálogo
                 </Button>
-              </NavLink>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
-              <NavLink to="/security-policy">
+              <Link to="http://localhost:80/security-policy">
                 <Button variant="outline" className="w-full justify-start gap-2">
                   <ShieldAlert size={16} /> Política de segurança
                 </Button>
-              </NavLink>
+              </Link>
             </SheetClose>
 
             <ModeToggle />
@@ -115,11 +115,11 @@ export default function Header() {
         </SheetContent>
       </Sheet>
 
-      <NavLink to="/">
+      <Link to="http://localhost:80/">
         <h1 className="text-lg font-semibold">
           <span className="text-primary">Tech</span>Nexus
         </h1>
-      </NavLink>
+      </Link>
 
 
 
