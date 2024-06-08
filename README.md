@@ -101,7 +101,7 @@ npx prisma db seed
 
 Após os comandos, se tudo correu bem, o banco de dados deve estar estruturado e populado.
 
-### Executando a aplicação
+## Executando a aplicação
 Depois de tudo pronto, para iniciar a aplicação, é preciso ter os servidores backend e frontend executando simultâneamente. \
 <br />
 Para isso, abra um terminal em ambas as pastas `frontend` e `backend` e inicie em ambos terminais os servidores com o comando:
