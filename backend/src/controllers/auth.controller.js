@@ -18,6 +18,7 @@ async function signin(req, res, next) {
   if (!user) {
     return res.status(400).json({message: "Invalid credentials"});
   }
+
   const isPasswordValid = await bcrypt.compare(password, user.password);
   
   if (!isPasswordValid) {
