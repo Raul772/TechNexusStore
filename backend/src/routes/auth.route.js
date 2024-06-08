@@ -11,6 +11,6 @@ authRouter.post("/signin", authController.signin);
 authRouter.post("/signup", authController.signup);
 
 /* GET CSRF Token */
-authRouter.get("/csrf", authController.csrf);
+// authRouter.get("/csrf", authController.csrf);
 
 module.exports = authRouter;

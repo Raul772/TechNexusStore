@@ -75,14 +75,14 @@ async function signup(req, res, next){
   res.status(201).json({ message: 'User successfully registered' });
 }
 
-async function csrf(req, res, next) {
-  try {
-    res.json(await programmingLanguages.create(req.body));
-  } catch (err) {
-    console.error(`Error while creating new user:`, err.message);
-    next(err);
-  }
-}
+// async function csrf(req, res, next) {
+//   try {
+//     res.json(await programmingLanguages.create(req.body));
+//   } catch (err) {
+//     console.error(`Error while creating new user:`, err.message);
+//     next(err);
+//   }
+// }
 
 
 
@@ -90,5 +90,5 @@ async function csrf(req, res, next) {
 module.exports = {
   signin,
   signup,
-  csrf
+  // csrf
 };
