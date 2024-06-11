@@ -16,13 +16,22 @@ async function signin(req, res, next) {
     });
     
   if (!user) {
-    return res.status(400).json({message: "Invalid credentials"});
+    return res.status(404).json({
+        error: {
+          message: 'Invalid credentials' 
+        }
+        
+    });
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   
   if (!isPasswordValid) {
-    return res.status(400).json({ message: 'Invalid credentials' });
+    return res.status(404).json({ 
+      error: {
+        message: 'Invalid credentials' 
+      }
+    });
   }
 
   const token = jwt.sign({ user }, JWT_SECRET_KEY, { expiresIn: '1 day' });

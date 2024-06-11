@@ -35,21 +35,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   const signin = async (credentials: ICredentials) => {
+    try{
+      const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
+      
+      const { jwtToken, user } = response.data;
+      localStorage.setItem("jwt", jwtToken);
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      setStatus("authenticated");
+  
+      return user;
 
-
-    const response = await axios.post('http://localhost:3000/api/auth/signin', credentials);
-
-    if(response.statusText != "OK"){
-      return false;
+    }catch(error){
+      return error;
     }
-    
-    const { jwtToken, user } = response.data;
-    localStorage.setItem("jwt", jwtToken);
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
-    setStatus("authenticated");
-
-    return user;
   }
 
   const signout = () => {

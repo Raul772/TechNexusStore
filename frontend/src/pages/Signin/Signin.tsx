@@ -1,5 +1,6 @@
+import { CircleX } from "lucide-react";
 import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function Signin() {
@@ -7,6 +8,8 @@ export default function Signin() {
   const [loading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const error = useParams();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,12 +21,14 @@ export default function Signin() {
       <div className="flex w-[300px] flex-col items-center justify-center rounded-xl bg-slate-300 dark:bg-slate-800 p-5">
         {
           loading ? <p>Por favor, aguarde...</p> : <>
-            <h2 className="pb-5 text-lg font-bold">
+            <h2 className="text-lg font-bold">
               Entre com seu e-mail e senha!
             </h2>
 
-            <div className="hidden">
-              <p>Sign in failed. Check the details you provided are correct.</p>
+            <div className="py-5">
+              {error.error == "404" && (
+                <p className="text-red-600 font-semibold"><CircleX size={25} className="inline"/> E-mail e/ou senha inválidos.</p>
+              )}
             </div>
             <hr />
             <form
@@ -33,7 +38,7 @@ export default function Signin() {
               <div className="mb-2">
                 <label
                   htmlFor="input-email-for-credentials-provider"
-                  className="mb-2 block text-sm dark:text-slate-200"
+                  className={"mb-2 block text-sm dark:text-slate-200" + (error.error && " text-red-600")}
                 >
                   E-mail
                 </label>
@@ -49,7 +54,7 @@ export default function Signin() {
               <div className="my-3">
                 <label
                   htmlFor="input-password-for-credentials-provider"
-                  className="mb-2 block text-sm dark:text-slate-200"
+                  className={"mb-2 block text-sm dark:text-slate-200" + (error.error && " text-red-600")}
                 >
                   Senha
                 </label>

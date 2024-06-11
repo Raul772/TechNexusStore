@@ -1,4 +1,4 @@
-import { useAuth } from "@/contexts/AuthContext/AuthContext"
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -9,14 +9,22 @@ export default function FromHttps() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
-    if (email && password) {
-      signin({ email, password });
-      navigate("/");
-    }else{
-      location.href = "https://localhost:443/signin"
+
+    const login = async (email: string, password: string) => {
+      
+      const logged = await signin({ email, password });
+      
+      if(!('response' in logged)){ 
+        navigate("/");
+      }else{
+        location.href = "https://localhost:443/signin/404"
+      }
+    } 
+
+    if (email && password){
+      login(email, password);
     }
-    
+
   }, []);
 
   return (

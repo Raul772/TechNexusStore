@@ -17,6 +17,7 @@ export const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="/signin" element={<Signin />} />
+      <Route path="/signin/:error" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/security-policy" element={<SecurityPolicy />} />
       <Route path="/product/:slug" element={<Product />} />
